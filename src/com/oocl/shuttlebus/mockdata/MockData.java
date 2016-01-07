@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class MockData {
 
-    public static List mockUserData() {
+    public static List<User> mockUserData() {
         User hra = new User();
         hra.setId(10001);
         hra.setUserName("Hr");
@@ -26,13 +26,13 @@ public class MockData {
         passenger.setPassword("pwd");
         passenger.setRole("Passenger");
         Gson gson = new Gson();
-        List userList = new ArrayList();
+        List<User> userList = new ArrayList<User>();
         userList.add(hra);
         userList.add(passenger);
         return userList;
     }
 
-    public static List mockRoute() {
+    public static List<Route> mockRoute() {
         BusStop stop1 = new BusStop();
         stop1.setId(20001);
         stop1.setName("紫荆园");
@@ -57,11 +57,11 @@ public class MockData {
         BusStop stop8 = new BusStop();
         stop8.setId(20008);
         stop8.setName("唐家市场");
-        List r7_on = new ArrayList();
-        List r10_on = new ArrayList();
-        List r11_on = new ArrayList();
-        List r12_off = new ArrayList();
-        List r10_off = new ArrayList();
+        List<BusStop> r7_on = new ArrayList<BusStop>();
+        List<BusStop> r10_on = new ArrayList<BusStop>();
+        List<BusStop> r11_on = new ArrayList<BusStop>();
+        List<BusStop> r12_off = new ArrayList<BusStop>();
+        List<BusStop> r10_off = new ArrayList<BusStop>();
 
         r7_on.add(stop1);
         r7_on.add(stop2);
@@ -126,7 +126,7 @@ public class MockData {
         route5.setType("off");
         route5.setVacancy(40);
 
-        List routeList = new ArrayList();
+        List<Route> routeList = new ArrayList<Route>();
         routeList.add(route1);
         routeList.add(route2);
         routeList.add(route3);
@@ -136,5 +136,56 @@ public class MockData {
         return routeList;
     }
 
+    public static List<Ticket> mockTicket() {
+        User passenger = new User();
+        passenger.setId(10002);
+        passenger.setUserName("Psg");
+        passenger.setPassword("pwd");
+        passenger.setRole("Passenger");
+
+        Route route1 = new Route();
+        route1.setId(30001);
+        route1.setName("on_7");
+        route1.setType("on");
+        route1.setVacancy(50);
+
+        Route route2 = new Route();
+        route2.setId(30001);
+        route2.setName("on_7");
+        route2.setType("on");
+        route2.setVacancy(50);
+
+        BusStop stop1 = new BusStop();
+        stop1.setId(20002);
+        stop1.setName("海怡湾畔");
+
+        BusStop stop2 = new BusStop();
+        stop2.setId(2004);
+        stop2.setName("华子石西");
+
+        Ticket onLongTicket = new Ticket();
+        onLongTicket.setId(40001);
+        onLongTicket.setUser(passenger);
+        onLongTicket.setType("long");
+        onLongTicket.setRoute(route2);
+        onLongTicket.setBusStop(stop1);
+        onLongTicket.setDate("20160107");
+
+
+        Ticket offTempTicket = new Ticket();
+        offTempTicket.setId(40002);
+        offTempTicket.setUser(passenger);
+        offTempTicket.setType("temp");
+        offTempTicket.setRoute(route2);
+        offTempTicket.setBusStop(stop2);
+        offTempTicket.setDate("20160107");
+
+        List<Ticket> ticketList = new ArrayList<Ticket>();
+        ticketList.add(onLongTicket);
+        ticketList.add(offTempTicket);
+
+
+        return ticketList;
+    }
 
 }
