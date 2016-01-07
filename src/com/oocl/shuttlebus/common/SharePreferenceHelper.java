@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.oocl.shuttlebus.model.Ticket;
 import com.oocl.shuttlebus.model.User;
 
@@ -34,8 +35,8 @@ public class SharePreferenceHelper {
 	    }
 	    
 	    public static List<Ticket> geTickets(Context context) {
-			List<Ticket> tickets = null;
-			
-			return tickets;
+			SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
+			String ticketsJson = settings.getString(PREF_TICKETS, "");
+			return new Gson().fromJson(ticketsJson, new TypeToken<List<Ticket>>(){}.getType());
 		}
 }
