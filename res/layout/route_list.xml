@@ -13,7 +13,6 @@
     android:layout_height="0dp"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
-    android:layout_marginTop="20dp"
     android:layout_weight="18.26"
     android:background="#ffffff"
     android:orientation="vertical" >
@@ -41,7 +40,7 @@
             android:layout_marginTop="15dp"
             android:textSize="20dp"
             android:textStyle="bold"
-            android:textColor="#FF6633"
+            android:textColor="#be573f"
             android:text="OOCL" />
         
         <TextView
@@ -81,7 +80,7 @@
         android:layout_width="200dip"  
    		android:layout_height="40dip" 
         android:layout_gravity="center"
-        android:background="#FF6633"
+        android:background="#be573f"
         android:text="返回主页" />
 </LinearLayout>
 <LinearLayout

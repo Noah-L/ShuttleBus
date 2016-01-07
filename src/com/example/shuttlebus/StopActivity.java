@@ -9,13 +9,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.oocl.shuttlebus.common.SharePreferenceHelper;
 import com.oocl.shuttlebus.consts.Constant;
@@ -39,11 +42,12 @@ public class StopActivity extends Activity {
 		initView();
 		List<HashMap<String, Object>> stopData = initStopData();
 		initEvent(stopData);
+		initButtonEvent();
 	}
 
 	private void initView() {
-		TextView textView = (TextView) this.findViewById(R.id.routName);
-		textView.setText(Constant.PREFIX_ROUTE + route.getName());
+		TextView textView = (TextView) this.findViewById(R.id.routeName);
+		textView.setText(textView.getText() +  Constant.PREFIX_ROUTE + route.getName());
 	}
 
 	private List<HashMap<String, Object>> initStopData() {
@@ -52,6 +56,7 @@ public class StopActivity extends Activity {
 		if (busStops != null && busStops.size() > 0) {
 			for (BusStop busStop : busStops) {
 				HashMap<String, Object> item = new HashMap<String, Object>();
+				item.put("stopIcon", R.drawable.stop);
 				item.put("stopName", busStop.getName());
 				item.put("stop", busStop);
 				datas.add(item);
@@ -62,12 +67,33 @@ public class StopActivity extends Activity {
 
 	private void initEvent(List<HashMap<String, Object>> stopData) {
 		ListView listView = (ListView) this.findViewById(R.id.stopListView);
-		SimpleAdapter adapter = new SimpleAdapter(this, stopData, R.layout.stop_item, new String[] { "stopName" }, new int[] { R.id.name });
+		SimpleAdapter adapter = new SimpleAdapter(this, stopData, R.layout.stop_item, new String[] { "stopIcon", "stopName" }, new int[] { R.drawable.stop, R.id.name });
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(new ItemClickListener());
 	}
 
-	public void confirmTicket(View view) {
+	private void initButtonEvent() {
+		Button returnButton = (Button) this.findViewById(R.id.stop_ReturnButton);
+		Button genTicButton = (Button) this.findViewById(R.id.stop_GenTicButton);
+		
+		returnButton.setOnClickListener(new OnClickListener(){  
+			  
+            public void onClick(View arg0) {  
+	         	Intent intent=new Intent(StopActivity.this,IndexActivity.class);  
+	            startActivity(intent);
+            }
+        }); 
+		
+		genTicButton.setOnClickListener(new OnClickListener(){  
+			  
+            public void onClick(View arg0) {  
+            	confirmTicket();
+            }
+        }); 
+	}
+
+	
+	public void confirmTicket() {
 		List<Ticket> tickets = new ArrayList<Ticket>();
 		tickets.add(createTicket());
 		SharePreferenceHelper.saveTickets(this.getApplicationContext(), tickets);
