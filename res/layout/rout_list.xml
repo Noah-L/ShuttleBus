@@ -8,19 +8,60 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="20dp"
+        android:layout_height="50dp"
         android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/busIcon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bus_icon" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="路线" />
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="15dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="#FF6633"
+            android:text="OOCL" />
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="15dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="Shuttle Bus" />
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:orientation="vertical" >
+         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+             android:layout_marginTop="15dp"
+            android:textSize="15dp"
+            android:text="上班路线" />
+	</LinearLayout>
     <!-- ListView控件 -->
 
     <ListView
         android:id="@+id/routListView"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+        android:layout_gravity="center"
+        android:layout_height="224dp" 
+        android:gravity="center">
+    </ListView>
 
 </LinearLayout>
