@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.oocl.shuttlebus.common.SharePreferenceHelper;
+import com.oocl.shuttlebus.mockdata.MockData;
 import com.oocl.shuttlebus.model.Ticket;
 
 public class TicketActivity extends Activity {
@@ -15,6 +16,9 @@ public class TicketActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.ticket);
+		
+		List<Ticket> mockupDatas =  MockData.mockTicket();
+		SharePreferenceHelper.saveTickets(getApplicationContext(), mockupDatas);
 		
 		List<Ticket> tickets = SharePreferenceHelper.geTickets(getApplicationContext());
 		Ticket firstTicket = tickets.get(0);
