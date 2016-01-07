@@ -47,10 +47,9 @@ public class RoutActivity extends Activity {
 			ListView listView = (ListView) parent;
 			HashMap<String, Object> data = (HashMap<String, Object>) listView.getItemAtPosition(position);
 			String personid = data.get("id").toString();
-			Toast.makeText(getApplicationContext(), personid, 1).show();
+			//Toast.makeText(getApplicationContext(), personid, 1).show();
 			// TODO
 			String routName = data.get("name").toString();
-			Log.i("name", routName);
 
 			Intent intent = new Intent(RoutActivity.this, StopActivity.class);
 			Bundle bundle = new Bundle();
