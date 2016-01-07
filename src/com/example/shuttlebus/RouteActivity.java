@@ -8,8 +8,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -23,7 +25,8 @@ public class RouteActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.route_list);
 		List<HashMap<String, Object>> routeData = initRouteData();
-		initEvent(routeData);
+		initListViewEvent(routeData);
+		initButtonEvent();
 	}
 
 	private List<HashMap<String, Object>> initRouteData() {
@@ -31,6 +34,7 @@ public class RouteActivity extends Activity {
 		List<HashMap<String, Object>> datas = new ArrayList<HashMap<String, Object>>();
 		for (Route route : routes) {
 			HashMap<String, Object> item = new HashMap<String, Object>();
+			item.put("route1Icon", R.drawable.route1_icon);
 			item.put("routeId", route.getId());
 			item.put("routeName", "No" + route.getName());
 			item.put("arrowIcon", R.drawable.arrow_icon);
@@ -39,14 +43,23 @@ public class RouteActivity extends Activity {
 		return datas;
 	}
 
-	private void initEvent(List<HashMap<String, Object>> routData) {
+	private void initListViewEvent(List<HashMap<String, Object>> routData) {
 		ListView listView = (ListView) this.findViewById(R.id.routeListView);
-		SimpleAdapter adapter = new SimpleAdapter(this, routData, R.layout.route_item, new String[] { "routeName", "arrowIcon" },
-				new int[] { R.id.name, R.id.arrowIcon });
+		SimpleAdapter adapter = new SimpleAdapter(this, routData, R.layout.route_item, new String[] { "route1Icon", "routeName", "arrowIcon" },
+				new int[] { R.drawable.route1_icon, R.id.name, R.id.arrowIcon });
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(new ItemClickListener());
 	}
 
+	private void initButtonEvent(){
+		Button returnButton =(Button)findViewById(R.id.returnButton);
+		returnButton.setOnClickListener(new OnClickListener(){  
+            public void onClick(View arg0) {  
+                Intent intent=new Intent(RouteActivity.this,IndexActivity.class);  
+                startActivity(intent);}  
+        }); 
+	}
+	
 	private final class ItemClickListener implements OnItemClickListener {
 
 		@SuppressWarnings("unchecked")
