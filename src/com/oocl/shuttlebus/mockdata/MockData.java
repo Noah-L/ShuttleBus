@@ -15,11 +15,13 @@ public class MockData {
 
     public static List mockUserData() {
         User hra = new User();
+        hra.setId(10001);
         hra.setUserName("Hr");
         hra.setPassword("pwd");
         hra.setRole("HR");
 
         User passenger = new User();
+        passenger.setId(10002);
         passenger.setUserName("Psg");
         passenger.setPassword("pwd");
         passenger.setRole("Passenger");
@@ -32,22 +34,29 @@ public class MockData {
 
     public static List mockRoute() {
         BusStop stop1 = new BusStop();
+        stop1.setId(20001);
         stop1.setName("紫荆园");
         BusStop stop2 = new BusStop();
-        stop1.setName("海怡湾畔");
+        stop2.setId(20002);
+        stop2.setName("海怡湾畔");
         BusStop stop3 = new BusStop();
-        stop1.setName("公司");
+        stop3.setId(20003);
+        stop3.setName("公司");
         BusStop stop4 = new BusStop();
-        stop1.setName("华子石西");
+        stop4.setId(20004);
+        stop4.setName("华子石西");
         BusStop stop5 = new BusStop();
-        stop1.setName("白埔路口");
+        stop5.setId(20005);
+        stop5.setName("白埔路口");
         BusStop stop6 = new BusStop();
-        stop1.setName("吉大");
+        stop6.setId(20006);
+        stop6.setName("吉大");
         BusStop stop7 = new BusStop();
-        stop1.setName("九州城");
+        stop7.setId(20007);
+        stop7.setName("九州城");
         BusStop stop8 = new BusStop();
-        stop1.setName("唐家市场");
-
+        stop8.setId(20008);
+        stop8.setName("唐家市场");
         List r7_on = new ArrayList();
         List r10_on = new ArrayList();
         List r11_on = new ArrayList();
@@ -57,6 +66,7 @@ public class MockData {
         r7_on.add(stop1);
         r7_on.add(stop2);
         r7_on.add(stop3);
+
 
         r10_on.add(stop4);
         r10_on.add(stop5);
@@ -68,10 +78,12 @@ public class MockData {
         r11_on.add(stop8);
         r11_on.add(stop3);
 
+
         r12_off.add(stop3);
         r12_off.add(stop5);
         r12_off.add(stop4);
         r12_off.add(stop1);
+
 
         r10_off.add(stop3);
         r10_off.add(stop2);
@@ -80,30 +92,35 @@ public class MockData {
         r10_off.add(stop6);
 
         Route route1 = new Route();
+        route1.setId(30001);
         route1.setName("7");
         route1.setStop(r7_on);
         route1.setType("on");
         route1.setVacancy(50);
 
         Route route2 = new Route();
+        route2.setId(30002);
         route2.setName("10");
         route2.setStop(r10_on);
         route2.setType("on");
         route2.setVacancy(40);
 
         Route route3 = new Route();
+        route3.setId(30003);
         route3.setName("11");
         route3.setStop(r11_on);
         route3.setType("on");
         route3.setVacancy(50);
 
         Route route4 = new Route();
+        route4.setId(30004);
         route4.setName("10");
         route4.setStop(r12_off);
         route4.setType("off");
         route4.setVacancy(50);
 
         Route route5 = new Route();
+        route5.setId(30005);
         route5.setName("10");
         route5.setStop(r10_off);
         route5.setType("off");
@@ -118,4 +135,6 @@ public class MockData {
 
         return routeList;
     }
+
+
 }
