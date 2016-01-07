@@ -20,6 +20,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.oocl.shuttlebus.common.SharePreferenceHelper;
+import com.oocl.shuttlebus.consts.BookingType;
 import com.oocl.shuttlebus.consts.Constant;
 import com.oocl.shuttlebus.model.BusStop;
 import com.oocl.shuttlebus.model.Route;
@@ -107,17 +108,21 @@ public class StopActivity extends Activity {
 		ticket.setDate(new Date());
 		ticket.setBusStop(busStop);
 		ticket.setRoute(route);
-		ticket.setType(getTimeType());
+		ticket.setType(getBookingType());
 		ticket.setUser(user);
 		return ticket;
 	}
 
-	// TODO method name refactoring
-	private String getTimeType() {
+	private String getBookingType() {
+		String bookingType = BookingType.TEMPORARY.getValue();
 		RadioGroup radioGroup = (RadioGroup) this.findViewById(R.id.timeType);
 		RadioButton radioButton = (RadioButton) this.findViewById(radioGroup.getCheckedRadioButtonId());
-		return radioButton == null ? Constant.EMPTY_STRING : radioButton.getText() == null ? Constant.EMPTY_STRING : radioButton.getText()
-				.toString();
+		String onlineBookingText = radioButton == null ? Constant.EMPTY_STRING : radioButton.getText() == null ? Constant.EMPTY_STRING
+				: radioButton.getText().toString();
+		if (BookingType.USUALLY.getText().equals(onlineBookingText)) {
+			bookingType = BookingType.USUALLY.getValue();
+		}
+		return bookingType;
 	}
 
 	private final class ItemClickListener implements OnItemClickListener {
