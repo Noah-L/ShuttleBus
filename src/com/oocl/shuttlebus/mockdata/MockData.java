@@ -5,7 +5,9 @@ import com.oocl.shuttlebus.model.BusStop;
 import com.oocl.shuttlebus.model.Route;
 import com.oocl.shuttlebus.model.Ticket;
 import com.oocl.shuttlebus.model.User;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,6 +27,7 @@ public class MockData {
         passenger.setUserName("Psg");
         passenger.setPassword("pwd");
         passenger.setRole("Passenger");
+        Gson gson = new Gson();
         List<User> userList = new ArrayList<User>();
         userList.add(hra);
         userList.add(passenger);
@@ -168,7 +171,7 @@ public class MockData {
         onLongTicket.setType("long");
         onLongTicket.setRoute(route2);
         onLongTicket.setBusStop(stop1);
-        onLongTicket.setDate("20160107");
+        onLongTicket.setDate(new Date());
 
 
         Ticket offTempTicket = new Ticket();
@@ -177,7 +180,7 @@ public class MockData {
         offTempTicket.setType("temp");
         offTempTicket.setRoute(route2);
         offTempTicket.setBusStop(stop2);
-        offTempTicket.setDate("20160107");
+        offTempTicket.setDate(new Date());
 
         List<Ticket> ticketList = new ArrayList<Ticket>();
         ticketList.add(onLongTicket);
