@@ -81,6 +81,7 @@
    		android:layout_height="40dip" 
         android:layout_gravity="center"
         android:background="#be573f"
+        android:textColor="@android:color/white"
         android:text="返回主页" />
 </LinearLayout>
 <LinearLayout
