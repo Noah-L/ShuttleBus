@@ -1,5 +1,7 @@
 package com.oocl.shuttlebus.model;
 
+import java.util.Date;
+
 /**
  * Created by LANLE on 1/7/2016.
  */
@@ -9,7 +11,7 @@ public class Ticket {
 	private Route route;
 	private BusStop busStop;
 	private String type;
-	private String date;
+	private Date date;
 
 	public User getUser() {
 		return user;
@@ -27,11 +29,11 @@ public class Ticket {
 		this.type = type;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 

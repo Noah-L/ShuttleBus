@@ -1,9 +1,17 @@
 package com.oocl.shuttlebus.model;
 
+import java.io.Serializable;
+
 /**
  * Created by LANLE on 1/7/2016.
  */
-public class BusStop {
+public class BusStop implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private long id;
 	private String name;
 

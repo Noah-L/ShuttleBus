@@ -5,7 +5,9 @@ import com.oocl.shuttlebus.model.BusStop;
 import com.oocl.shuttlebus.model.Route;
 import com.oocl.shuttlebus.model.Ticket;
 import com.oocl.shuttlebus.model.User;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -169,7 +171,7 @@ public class MockData {
         onLongTicket.setType("long");
         onLongTicket.setRoute(route2);
         onLongTicket.setBusStop(stop1);
-        onLongTicket.setDate("20160107");
+        onLongTicket.setDate(new Date());
 
 
         Ticket offTempTicket = new Ticket();
@@ -178,7 +180,7 @@ public class MockData {
         offTempTicket.setType("temp");
         offTempTicket.setRoute(route2);
         offTempTicket.setBusStop(stop2);
-        offTempTicket.setDate("20160107");
+        offTempTicket.setDate(new Date());
 
         List<Ticket> ticketList = new ArrayList<Ticket>();
         ticketList.add(onLongTicket);

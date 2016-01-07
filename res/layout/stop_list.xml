@@ -39,6 +39,15 @@
     <ListView
         android:id="@+id/stopListView"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+        android:layout_height="210dp"
+        android:layout_weight="0.58" />
+
+    <Button
+        android:id="@+id/confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="confirmTicket"
+        android:text="确定" >
+    </Button>
 
 </LinearLayout>
