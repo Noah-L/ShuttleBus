@@ -80,8 +80,7 @@ public class StopActivity extends Activity {
 		returnButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View arg0) {
-				Intent intent = new Intent(StopActivity.this, IndexActivity.class);
-				startActivity(intent);
+				closeActivity();
 			}
 		});
 
@@ -91,6 +90,10 @@ public class StopActivity extends Activity {
 				confirmTicket();
 			}
 		});
+	}
+
+	public void closeActivity() {
+		this.finish();
 	}
 
 	public void confirmTicket() {
