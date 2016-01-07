@@ -1,12 +1,13 @@
 package com.oocl.shuttlebus.model;
-
+import com.oocl.shuttlebus.
 /**
  * Created by LANLE on 1/7/2016.
  */
 public class Ticket {
+    private long id;
     private User user;
-    private String route;
-    private String busStop;
+    private Route route;
+    private BusStop busStop;
     private String type;
     private String date;
 
@@ -35,19 +36,27 @@ public class Ticket {
         this.date = date;
     }
 
-    public String getRoute() {
+    public Route getRoute() {
         return route;
     }
 
-    public void setRoute(String route) {
+    public void setRoute(Route route) {
         this.route = route;
     }
 
-    public String getBusStop() {
+    public BusStop getBusStop() {
         return busStop;
     }
 
-    public void setBusStop(String busStop) {
+    public void setBusStop(BusStop busStop) {
         this.busStop = busStop;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

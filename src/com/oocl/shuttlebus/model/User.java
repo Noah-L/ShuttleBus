@@ -1,6 +1,5 @@
 package com.oocl.shuttlebus.model;
 
-import org.json.JSONArray;
 
 import java.util.ArrayList;
 
@@ -8,18 +7,10 @@ import java.util.ArrayList;
  * Created by LANLE on 1/7/2016.
  */
 public class User {
+    private long id;
     private String userName;
     private String password;
     private String role;
-
-    public User(String leni, String s) {
-
-    }
-
-    public User() {
-
-    }
-
 
     public String getUserName() {
         return userName;
@@ -45,4 +36,11 @@ public class User {
         this.role = role;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }

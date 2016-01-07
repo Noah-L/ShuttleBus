@@ -1,6 +1,5 @@
 package com.oocl.shuttlebus.model;
 
-import android.text.style.BulletSpan;
 
 import java.util.List;
 
@@ -8,6 +7,7 @@ import java.util.List;
  * Created by LANLE on 1/7/2016.
  */
 public class Route {
+    private long id;
     private String type;
     private List<BusStop> stop;
     private String name;
@@ -43,5 +43,13 @@ public class Route {
 
     public void setStop(List<BusStop> stop) {
         this.stop = stop;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }
