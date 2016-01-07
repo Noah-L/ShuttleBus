@@ -47,8 +47,8 @@ public class IndexActivity extends Activity {
 		checkMyTicket.setOnClickListener(new OnClickListener(){  
   
             public void onClick(View arg0) {  
-             //   Intent intent=new Intent(IndexActivity.this,RoutActivity.class);  
-             //   startActivity(intent);
+                Intent intent=new Intent(IndexActivity.this,TicketActivity.class);  
+                startActivity(intent);
             }  
               
         }); 
