@@ -1,11 +1,18 @@
 package com.oocl.shuttlebus.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by LANLE on 1/7/2016.
  */
-public class Route {
+public class Route implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private long id;
 	private String type;
 	private List<BusStop> stop;
