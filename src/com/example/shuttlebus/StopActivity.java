@@ -1,10 +1,12 @@
 package com.example.shuttlebus;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -24,46 +26,38 @@ import com.oocl.shuttlebus.model.User;
 
 public class StopActivity extends Activity {
 
+	private Route route;
+
+	private BusStop busStop;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.stop_list);
 		Bundle bundle = this.getIntent().getExtras();
-		Route route = (Route) bundle.get("route");
-		initView(route);
-		List<HashMap<String, Object>> stopData = initStopData(route);
+		route = (Route) bundle.get("route");
+		initView();
+		List<HashMap<String, Object>> stopData = initStopData();
 		initEvent(stopData);
 	}
 
-	private void initView(Route route) {
+	private void initView() {
 		TextView textView = (TextView) this.findViewById(R.id.routName);
 		textView.setText(Constant.PREFIX_ROUTE + route.getName());
 	}
 
-	public void confirmTicket(View view) {
-
-		String timeType = getTimeType();
-
-		List<Ticket> tickets = new ArrayList<Ticket>();
-		Ticket ticket = new Ticket();
-		User user = SharePreferenceHelper.getUser(this.getApplicationContext());
-		// TODO
-		ticket.setId(1L);
-		ticket.setDate("2016-01-08");
-		ticket.setBusStop(null);
-		ticket.setRoute(null);
-		// TODO
-		ticket.setType(timeType);
-		ticket.setUser(user);
-		tickets.add(ticket);
-		SharePreferenceHelper.saveTickets(this.getApplicationContext(), tickets);
-	}
-
-	// TODO method name refactoring
-	private String getTimeType() {
-		RadioGroup radioGroup = (RadioGroup) this.findViewById(R.id.timeType);
-		RadioButton radioButton = (RadioButton) this.findViewById(radioGroup.getCheckedRadioButtonId());
-		return radioButton.getText() == null ? Constant.EMPTY_STRING : radioButton.getText().toString();
+	private List<HashMap<String, Object>> initStopData() {
+		List<BusStop> busStops = route.getStop();
+		List<HashMap<String, Object>> datas = new ArrayList<HashMap<String, Object>>();
+		if (busStops != null && busStops.size() > 0) {
+			for (BusStop busStop : busStops) {
+				HashMap<String, Object> item = new HashMap<String, Object>();
+				item.put("stopName", busStop.getName());
+				item.put("stop", busStop);
+				datas.add(item);
+			}
+		}
+		return datas;
 	}
 
 	private void initEvent(List<HashMap<String, Object>> stopData) {
@@ -71,21 +65,34 @@ public class StopActivity extends Activity {
 		SimpleAdapter adapter = new SimpleAdapter(this, stopData, R.layout.stop_item, new String[] { "stopName" }, new int[] { R.id.name });
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(new ItemClickListener());
-
 	}
 
-	private List<HashMap<String, Object>> initStopData(Route route) {
-		List<BusStop> busStops = route.getStop();
-		List<HashMap<String, Object>> datas = new ArrayList<HashMap<String, Object>>();
-		if (busStops != null && busStops.size() > 0) {
-			for (BusStop busStop : busStops) {
-				HashMap<String, Object> item = new HashMap<String, Object>();
-				item.put("stopId", busStop.getId());
-				item.put("stopName", busStop.getName());
-				datas.add(item);
-			}
-		}
-		return datas;
+	public void confirmTicket(View view) {
+		List<Ticket> tickets = new ArrayList<Ticket>();
+		tickets.add(createTicket());
+		SharePreferenceHelper.saveTickets(this.getApplicationContext(), tickets);
+		Intent intent = new Intent(StopActivity.this, IndexActivity.class);
+		startActivity(intent);
+	}
+
+	private Ticket createTicket() {
+		Ticket ticket = new Ticket();
+		User user = SharePreferenceHelper.getUser(this.getApplicationContext());
+		ticket.setId(1L); // TODO
+		ticket.setDate(new Date());
+		ticket.setBusStop(busStop);
+		ticket.setRoute(route);
+		ticket.setType(getTimeType());
+		ticket.setUser(user);
+		return ticket;
+	}
+
+	// TODO method name refactoring
+	private String getTimeType() {
+		RadioGroup radioGroup = (RadioGroup) this.findViewById(R.id.timeType);
+		RadioButton radioButton = (RadioButton) this.findViewById(radioGroup.getCheckedRadioButtonId());
+		return radioButton == null ? Constant.EMPTY_STRING : radioButton.getText() == null ? Constant.EMPTY_STRING : radioButton.getText()
+				.toString();
 	}
 
 	private final class ItemClickListener implements OnItemClickListener {
@@ -93,11 +100,7 @@ public class StopActivity extends Activity {
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 			ListView listView = (ListView) parent;
 			HashMap<String, Object> data = (HashMap<String, Object>) listView.getItemAtPosition(position);
-			String personid = data.get("id").toString();
-			// Toast.makeText(getApplicationContext(), personid, 1).show();
-			// TODO
-			String routName = data.get("name").toString();
-
+			busStop = (BusStop) data.get("stop");
 		}
 	}
 
