@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/TableLayout01"
+    android:layout_width="fill_parent" android:layout_height="fill_parent">
+    <TableRow android:gravity="center">
+      <Button 
+            android:text="预定上班路线" 
+            android:id="@+id/bookDutyRoute" 
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content">
+       </Button>
+     </TableRow>
+     <TableRow android:gravity="center">
+      <Button 
+            android:text="预定下班路线" 
+            android:id="@+id/bookOffDutyRoute" 
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content">
+       </Button>
+     </TableRow>
+     <TableRow android:gravity="center">
+      <Button 
+            android:text="查看我的Ticket" 
+            android:id="@+id/checkMyTicket" 
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content">
+       </Button>
+     </TableRow>
+     <TableRow android:gravity="center">
+      <Button 
+            android:text="路线统计信息" 
+            android:id="@+id/routeStatistics" 
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content">
+       </Button>
+     </TableRow>
+    
+</TableLayout>

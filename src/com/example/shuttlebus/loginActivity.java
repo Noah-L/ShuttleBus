@@ -7,8 +7,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
-public class loginActivity extends Activity {
+import com.oocl.shuttlebus.common.SharePreferenceHelper;
+import com.oocl.shuttlebus.model.User;
+
+public class LoginActivity extends Activity {
 	Button loginButton = null;
 	EditText userName = null;
 	EditText password = null;
@@ -22,12 +26,18 @@ public class loginActivity extends Activity {
 		loginButton.setOnClickListener(new OnClickListener(){  
   
             public void onClick(View arg0) {  
-                String  username=userName.getText().toString();  
-                String  pwd=password.getText().toString();  
-                if(username.equals("123")&&pwd.equals("123")){  
-                 //密码确认  
-                Intent intent=new Intent(loginActivity.this,RouteActivity.class);  
-                startActivity(intent);}  
+            	 String  username=userName.getText().toString();  
+                 String  pwd=password.getText().toString(); 
+                 if("".equals(username) || "".equals(pwd)){
+                 	Toast.makeText(getApplicationContext(), "请输入用户名和密码", 2).show();
+                 }else{
+                 	User user = new User();
+                 	user.setPassword(password.getText().toString());
+                 	user.setUserName(userName.getText().toString());
+                 	SharePreferenceHelper.saveUser(getApplicationContext(), user);
+                 	Intent intent=new Intent(LoginActivity.this,IndexActivity.class);  
+                     startActivity(intent);
+                 }  
             }  
               
         }); 

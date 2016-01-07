@@ -49,8 +49,6 @@
             android:maxLines="200"
             android:password="true"
             android:scrollHorizontally="true" />
-
-
         <Button
             android:id="@+id/btn_login"
             android:layout_width="80dip"
