@@ -1,4 +1,5 @@
 package com.oocl.shuttlebus.common;
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
@@ -27,6 +28,20 @@ public class SharePreferenceHelper {
 		}
 	    
 	    private static final String PREF_TICKETS = "tickets";
+	    public static boolean addTickets(Context context, List<Ticket> tickets) {
+			SharedPreferences setting = PreferenceManager.getDefaultSharedPreferences(context);
+			String ticketsJson = setting.getString(PREF_TICKETS, "");
+			List<Ticket> savedTickets = new Gson().fromJson(ticketsJson, new TypeToken<List<Ticket>>(){}.getType());
+			if(savedTickets == null){
+				savedTickets = new ArrayList<Ticket>();
+			}
+	    	savedTickets.addAll(tickets);
+			SharedPreferences.Editor editor = setting.edit();
+			editor.putString(PREF_TICKETS, new Gson().toJson(savedTickets));
+			return editor.commit();
+	    }
+	    
+	    
 	    public static boolean saveTickets(Context context, List<Ticket> tickets) {
 			SharedPreferences setting = PreferenceManager.getDefaultSharedPreferences(context);
 			SharedPreferences.Editor editor = setting.edit();

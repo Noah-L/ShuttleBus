@@ -96,7 +96,7 @@ public class StopActivity extends Activity {
 	public void confirmTicket() {
 		List<Ticket> tickets = new ArrayList<Ticket>();
 		tickets.add(createTicket());
-		SharePreferenceHelper.saveTickets(this.getApplicationContext(), tickets);
+		SharePreferenceHelper.addTickets(this.getApplicationContext(), tickets);
 		Intent intent = new Intent(StopActivity.this, IndexActivity.class);
 		startActivity(intent);
 	}
