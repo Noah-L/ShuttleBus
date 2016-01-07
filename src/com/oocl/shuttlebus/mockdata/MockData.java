@@ -25,7 +25,6 @@ public class MockData {
         passenger.setUserName("Psg");
         passenger.setPassword("pwd");
         passenger.setRole("Passenger");
-        Gson gson = new Gson();
         List<User> userList = new ArrayList<User>();
         userList.add(hra);
         userList.add(passenger);
