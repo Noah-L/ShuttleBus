@@ -12,15 +12,6 @@ public class User {
     private String password;
     private String role;
 
-    public User(String leni, String s) {
-
-    }
-
-    public User() {
-
-    }
-
-
     public String getUserName() {
         return userName;
     }
