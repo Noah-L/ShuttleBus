@@ -55,7 +55,7 @@
             android:layout_height="50dp"
             android:orientation="vertical" >
             <TextView
-                android:id="@+id/routeName"
+                android:id="@+id/routeType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

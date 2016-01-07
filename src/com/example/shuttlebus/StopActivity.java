@@ -18,7 +18,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.oocl.shuttlebus.common.SharePreferenceHelper;
 import com.oocl.shuttlebus.consts.Constant;
@@ -39,15 +38,15 @@ public class StopActivity extends Activity {
 		setContentView(R.layout.stop_list);
 		Bundle bundle = this.getIntent().getExtras();
 		route = (Route) bundle.get("route");
-		initView();
+		initView(bundle.getString("routeType"));
 		List<HashMap<String, Object>> stopData = initStopData();
 		initEvent(stopData);
 		initButtonEvent();
 	}
 
-	private void initView() {
-		TextView textView = (TextView) this.findViewById(R.id.routeName);
-		textView.setText(textView.getText() +  Constant.PREFIX_ROUTE + route.getName());
+	private void initView(String routeType) {
+		TextView textView = (TextView) this.findViewById(R.id.routeType);
+		textView.setText(routeType + Constant.SUFFIX_ROUTE + Constant.PREFIX_ROUTE + route.getName());
 	}
 
 	private List<HashMap<String, Object>> initStopData() {
@@ -67,7 +66,8 @@ public class StopActivity extends Activity {
 
 	private void initEvent(List<HashMap<String, Object>> stopData) {
 		ListView listView = (ListView) this.findViewById(R.id.stopListView);
-		SimpleAdapter adapter = new SimpleAdapter(this, stopData, R.layout.stop_item, new String[] { "stopIcon", "stopName" }, new int[] { R.drawable.stop, R.id.name });
+		SimpleAdapter adapter = new SimpleAdapter(this, stopData, R.layout.stop_item, new String[] { "stopIcon", "stopName" }, new int[] {
+				R.drawable.stop, R.id.name });
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(new ItemClickListener());
 	}
@@ -75,24 +75,23 @@ public class StopActivity extends Activity {
 	private void initButtonEvent() {
 		Button returnButton = (Button) this.findViewById(R.id.stop_ReturnButton);
 		Button genTicButton = (Button) this.findViewById(R.id.stop_GenTicButton);
-		
-		returnButton.setOnClickListener(new OnClickListener(){  
-			  
-            public void onClick(View arg0) {  
-	         	Intent intent=new Intent(StopActivity.this,IndexActivity.class);  
-	            startActivity(intent);
-            }
-        }); 
-		
-		genTicButton.setOnClickListener(new OnClickListener(){  
-			  
-            public void onClick(View arg0) {  
-            	confirmTicket();
-            }
-        }); 
+
+		returnButton.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View arg0) {
+				Intent intent = new Intent(StopActivity.this, IndexActivity.class);
+				startActivity(intent);
+			}
+		});
+
+		genTicButton.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View arg0) {
+				confirmTicket();
+			}
+		});
 	}
 
-	
 	public void confirmTicket() {
 		List<Ticket> tickets = new ArrayList<Ticket>();
 		tickets.add(createTicket());

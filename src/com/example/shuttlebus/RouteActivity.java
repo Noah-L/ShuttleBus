@@ -14,6 +14,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import com.oocl.shuttlebus.consts.Constant;
 import com.oocl.shuttlebus.mockdata.MockData;
@@ -21,13 +22,23 @@ import com.oocl.shuttlebus.model.Route;
 
 public class RouteActivity extends Activity {
 
+	private String routeType;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.route_list);
+		Bundle bundle = this.getIntent().getExtras();
+		initView(bundle);
 		List<HashMap<String, Object>> routeData = initRouteData();
 		initListViewEvent(routeData);
 		initButtonEvent();
+	}
+
+	private void initView(Bundle bundle) {
+		TextView textView = (TextView) this.findViewById(R.id.routeType);
+		routeType = bundle.get("routeType").toString();
+		textView.setText(routeType + Constant.SUFFIX_ROUTE);
 	}
 
 	private List<HashMap<String, Object>> initRouteData() {
@@ -75,6 +86,7 @@ public class RouteActivity extends Activity {
 			Intent intent = new Intent(RouteActivity.this, StopActivity.class);
 			Bundle bundle = new Bundle();
 			bundle.putSerializable("route", (Route) data.get("route"));
+			bundle.putString("routeType", routeType);
 			intent.putExtras(bundle);
 			startActivity(intent);
 		}

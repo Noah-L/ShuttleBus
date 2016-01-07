@@ -62,7 +62,8 @@
    		android:layout_height="40dip"
    		android:layout_marginTop="50dp" 
         android:layout_gravity="center"
-        android:background="#FF6633"
+        android:background="#be573f"
+        android:textColor="@android:color/white"
         android:text="预定上班路线" />
     <Button
         android:id="@+id/bookOffDutyRoute"
@@ -70,7 +71,8 @@
    		android:layout_height="40dip" 
    		android:layout_marginTop="20dp"
         android:layout_gravity="center"
-        android:background="#FF6633"
+        android:background="#be573f"
+        android:textColor="@android:color/white"
         android:text="预定下班路线" />
     <Button
         android:id="@+id/checkMyTicket"
@@ -78,7 +80,8 @@
    		android:layout_height="40dip" 
    		android:layout_marginTop="20dp"
         android:layout_gravity="center"
-        android:background="#FF6633"
+        android:background="#be573f"
+        android:textColor="@android:color/white"
         android:text="查看我的Ticket" />
     <Button
         android:id="@+id/routeStatistics"
@@ -86,7 +89,8 @@
    		android:layout_height="40dip"
    		 android:layout_marginTop="20dp" 
         android:layout_gravity="center"
-        android:background="#FF6633"
+        android:background="#be573f"
+        android:textColor="@android:color/white"
         android:text="路线统计信息" />
     
 </LinearLayout>
