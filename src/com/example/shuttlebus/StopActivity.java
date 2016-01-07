@@ -49,12 +49,11 @@ public class StopActivity extends Activity {
 
 		Bundle bundle = this.getIntent().getExtras();
 		String name = bundle.getString("name");
-		Log.i("get data", name);
 		TextView textView = (TextView) this.findViewById(R.id.routName);
 		textView.setText(name);
 
 		RadioGroup radioGroup = (RadioGroup) this.findViewById(R.id.timeType);
-		RadioButton radioButton = (RadioButton) this.findViewById(radioGroup.getCheckedRadioButtonId());
+//		RadioButton radioButton = (RadioButton) this.findViewById(radioGroup.getCheckedRadioButtonId());
 
 		// System.out.println(radioButton.getText());
 
@@ -67,10 +66,9 @@ public class StopActivity extends Activity {
 			ListView listView = (ListView) parent;
 			HashMap<String, Object> data = (HashMap<String, Object>) listView.getItemAtPosition(position);
 			String personid = data.get("id").toString();
-			Toast.makeText(getApplicationContext(), personid, 1).show();
+			//Toast.makeText(getApplicationContext(), personid, 1).show();
 			// TODO
 			String routName = data.get("name").toString();
-			Log.i("name", routName);
 
 		}
 	}
