@@ -57,7 +57,7 @@
     <!-- ListView控件 -->
 
     <ListView
-        android:id="@+id/routListView"
+        android:id="@+id/routeListView"
         android:layout_width="fill_parent"
         android:layout_gravity="center"
         android:layout_height="224dp" 

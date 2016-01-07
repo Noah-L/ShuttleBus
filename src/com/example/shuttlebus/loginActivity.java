@@ -26,7 +26,7 @@ public class loginActivity extends Activity {
                 String  pwd=password.getText().toString();  
                 if(username.equals("123")&&pwd.equals("123")){  
                  //密码确认  
-                Intent intent=new Intent(loginActivity.this,RoutActivity.class);  
+                Intent intent=new Intent(loginActivity.this,RouteActivity.class);  
                 startActivity(intent);}  
             }  
               
