@@ -54,6 +54,7 @@ public class StopActivity extends Activity {
 		List<BusStop> busStops = route.getStop();
 		List<HashMap<String, Object>> datas = new ArrayList<HashMap<String, Object>>();
 		if (busStops != null && busStops.size() > 0) {
+			busStop = busStops.get(0);
 			for (BusStop busStop : busStops) {
 				HashMap<String, Object> item = new HashMap<String, Object>();
 				item.put("stopIcon", R.drawable.stop);
