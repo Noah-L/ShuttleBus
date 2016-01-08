@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.oocl.shuttlebus.consts.Constant;
 import com.oocl.shuttlebus.mockdata.MockData;
+import com.oocl.shuttlebus.model.BusStop;
 import com.oocl.shuttlebus.model.Route;
 
 public class RouteActivity extends Activity {
@@ -45,14 +46,34 @@ public class RouteActivity extends Activity {
 		List<Route> routes = MockData.mockRoute();
 		List<HashMap<String, Object>> datas = new ArrayList<HashMap<String, Object>>();
 		for (Route route : routes) {
+			// TODO hard code
+			if ("上班".equals(routeType)) {
+				if ("off".equals(route.getType())) {
+					continue;
+				}
+			} else {
+				if ("on".equals(route.getType())) {
+					continue;
+				}
+			}
+			// TODO hard code
 			HashMap<String, Object> item = new HashMap<String, Object>();
 			item.put("route1Icon", R.drawable.route1_icon);
-			item.put("routeName", Constant.PREFIX_ROUTE + route.getName());
+			item.put("routeName", Constant.PREFIX_ROUTE + route.getName() + Constant.BLANK_STRING + getBusStopDescription(route));
 			item.put("route", route);
 			item.put("arrowIcon", R.drawable.arrow_icon);
 			datas.add(item);
 		}
 		return datas;
+	}
+
+	private String getBusStopDescription(Route route) {
+		List<BusStop> busStops = route.getStop();
+		if (busStops != null && busStops.size() > 1) {
+			return Constant.BRACKETS_LEFT + busStops.get(0).getName() + Constant.TO + busStops.get(busStops.size() - 1).getName()
+					+ Constant.BRACKETS_RIGHT;
+		}
+		return Constant.EMPTY_STRING;
 	}
 
 	private void initListViewEvent(List<HashMap<String, Object>> routData) {

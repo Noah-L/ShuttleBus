@@ -71,6 +71,9 @@ public class StopActivity extends Activity {
 				R.drawable.stop, R.id.name });
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(new ItemClickListener());
+		if (listView.getChildCount() > 0) {
+			listView.getChildAt(0).setBackgroundColor(android.graphics.Color.GRAY);
+		}
 	}
 
 	private void initButtonEvent() {
@@ -131,7 +134,12 @@ public class StopActivity extends Activity {
 	private final class ItemClickListener implements OnItemClickListener {
 
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+			for (int i = 0; i < parent.getChildCount(); i++) {
+				View viewChild = parent.getChildAt(i);
+				viewChild.setBackgroundColor(android.graphics.Color.WHITE);
+			}
 			ListView listView = (ListView) parent;
+			view.setBackgroundColor(android.graphics.Color.GRAY);
 			HashMap<String, Object> data = (HashMap<String, Object>) listView.getItemAtPosition(position);
 			busStop = (BusStop) data.get("stop");
 		}
