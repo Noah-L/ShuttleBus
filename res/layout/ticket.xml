@@ -6,7 +6,7 @@
     android:background="#be573f"
     tools:context="com.oocl.test.TicketActivity">
 
-    <LinearLayout
+   <LinearLayout
         android:id="@+id/ticket1"
         android:layout_width="fill_parent"
         android:layout_weight="20"
@@ -19,21 +19,50 @@
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="40dp">
+            android:layout_height="20dp">
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="OOCL Shuttle Bus Ticket"
-            android:textSize="25sp"/>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/bus_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="15dp"
+                android:textSize="23dp"
+                android:textStyle="bold"
+                android:textColor="#be573f"
+                android:text="OOCL" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="15dp"
+                android:textSize="23dp"
+                android:textStyle="bold"
+                android:text="Shuttle Bus" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/nameOfFirstTicket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
+            android:layout_marginLeft="50dp"
             android:layout_marginTop="10dp"
             android:textSize="17sp"
             android:text="姓名 : Elsa"/>
@@ -42,7 +71,7 @@
             android:id="@+id/routeOfFirstTicket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
+            android:layout_marginLeft="50dp"
             android:textSize="17sp"
             android:text="路线 : 上班No.1"/>
 
@@ -50,7 +79,7 @@
             android:id="@+id/stopOfFirstTicket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
+            android:layout_marginLeft="50dp"
             android:textSize="17sp"
             android:text="站点 : 海怡湾畔"/>
 
@@ -58,7 +87,7 @@
             android:id="@+id/typeOfFirstTicket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
+            android:layout_marginLeft="50dp"
             android:textSize="17sp"
             android:text="类型 : 长期预定"/>
     </LinearLayout>
@@ -81,30 +110,58 @@
         android:layout_marginRight="10dp">
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="40dp">
+            android:layout_height="20dp">
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="OOCL Shuttle Bus Ticket"
-            android:textSize="25sp"/>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="10dp"
+
+                android:background="@drawable/bus_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="15dp"
+                android:textSize="23dp"
+                android:textStyle="bold"
+                android:textColor="#be573f"
+                android:text="OOCL" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="15dp"
+                android:textSize="23dp"
+                android:textStyle="bold"
+                android:text="Shuttle Bus" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/nameOfSecondTicket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
+            android:layout_marginLeft="50dp"
             android:layout_marginTop="10dp"
             android:textSize="17sp"
             android:text="姓名 : Elsa"/>
-
         <TextView
             android:id="@+id/routeOfSecondTicket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
+            android:layout_marginLeft="50dp"
             android:textSize="17sp"
             android:text="路线 : 下班No.10"/>
 
@@ -112,7 +169,7 @@
             android:id="@+id/stopOfSecondTicket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
+            android:layout_marginLeft="50dp"
             android:textSize="17sp"
             android:text="站点 : 海怡湾畔"/>
 
@@ -120,10 +177,20 @@
             android:id="@+id/typeOfSecondTicket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
+            android:layout_marginLeft="50dp"
             android:textSize="17sp"
             android:text="类型 : 临时预定 2016.1.8"/>
     </LinearLayout>
-
+    
+    <Button
+        android:id="@+id/returnButton"
+        android:layout_width="200dip"
+        android:layout_height = "0dp"  
+   		android:layout_weight = "4"
+        android:layout_gravity="center"
+        android:background="#ffffff"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="10dp"
+        android:text="返回主页" />
 
 </LinearLayout>

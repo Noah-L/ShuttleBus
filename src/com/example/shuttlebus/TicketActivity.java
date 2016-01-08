@@ -6,8 +6,11 @@ import java.util.Date;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +26,8 @@ public class TicketActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.ticket);
+		initButtonEvent();
+		
 		
 		User user = SharePreferenceHelper.getUser(getApplicationContext());		
 		List<Ticket> tickets = SharePreferenceHelper.geTickets(getApplicationContext());
@@ -31,7 +36,7 @@ public class TicketActivity extends Activity {
 		if(tickets!=null){
 			for(Ticket ticket : tickets){
 				Date date = new Date();
-				if(ticket.getUser().getId()== user.getId() && DateHelper.areSameDay(ticket.getDate(),date)){
+				if(DateHelper.areSameDay(ticket.getDate(),date) && ticket.getUser().getUserName().equals(user.getUserName())){
 					filterTickets.add(ticket);
 				}
 			}
@@ -40,12 +45,12 @@ public class TicketActivity extends Activity {
 		Ticket firstTicket = null;
 		Ticket secondeTicket = null;
 		if(filterTickets.size()>1){
-			firstTicket = tickets.get(0);
-			secondeTicket = tickets.get(1);
+			firstTicket = filterTickets.get(0);
+			secondeTicket = filterTickets.get(1);
 			initTicketView(firstTicket,secondeTicket);
 		}
 		if(filterTickets.size()==1){
-			firstTicket = tickets.get(0);
+			firstTicket = filterTickets.get(0);
 			initTicketView(firstTicket,secondeTicket);
 		}
 		if(filterTickets.size()==0){
@@ -67,9 +72,20 @@ public class TicketActivity extends Activity {
 			TextView typeOfFirstTicket = (TextView)findViewById(R.id.typeOfFirstTicket);
 			
 			nameOfFirstTicket.setText("姓名 : "+firstTicket.getUser().getUserName());
-			routeOfFirstTicket.setText("路线: "+firstTicket.getRoute().getName());
+			String routeType = firstTicket.getRoute().getType();
+		    if(routeType.equals("on")){
+		    	routeOfFirstTicket.setText("路线: "+firstTicket.getRoute().getName()+" 上班");
+		    }else{
+		    	routeOfFirstTicket.setText("路线: "+firstTicket.getRoute().getName()+" 下班");
+		    }
 			stopOfFirstTicket.setText("站点: "+firstTicket.getBusStop().getName());
-			typeOfFirstTicket.setText("类型: "+firstTicket.getType() +" "+format.format(firstTicket.getDate()));
+			
+			String type = firstTicket.getType();
+			if(type.equals("长期预定")){
+				typeOfFirstTicket.setText("类型: "+firstTicket.getType());
+			}else{
+				typeOfFirstTicket.setText("类型: "+firstTicket.getType() +" "+format.format(firstTicket.getDate()));	
+			}
 		}
 
 		if(secondTicket==null){
@@ -82,10 +98,32 @@ public class TicketActivity extends Activity {
 			TextView typeOfSecondTicket = (TextView)findViewById(R.id.typeOfSecondTicket);
 			
 			nameOfSecondTicket.setText("姓名 : "+secondTicket.getUser().getUserName());
+			
+			String routeType = secondTicket.getRoute().getType();
+		    if(routeType.equals("on")){
+		    	routeOfSecondTicket.setText("路线: "+firstTicket.getRoute().getName()+" 上班");
+		    }else{
+		    	routeOfSecondTicket.setText("路线: "+firstTicket.getRoute().getName()+" 下班");
+		    }
 			routeOfSecondTicket.setText("路线: "+secondTicket.getRoute().getName());
 			stopOfSecondTicket.setText("站点: "+secondTicket.getBusStop().getName());
-			typeOfSecondTicket.setText("类型: "+secondTicket.getType() +" " + format.format(secondTicket.getDate()));
+			String type = secondTicket.getType();
+			if(type.equals("长期预定")){
+				typeOfSecondTicket.setText("类型: "+secondTicket.getType());
+			}else{
+				typeOfSecondTicket.setText("类型: "+secondTicket.getType() +" "+format.format(secondTicket.getDate()));	
+			}
 		}
+	}
+	
+	private void initButtonEvent() {
+		Button returnButton = (Button) findViewById(R.id.returnButton);
+		returnButton.setOnClickListener(new OnClickListener() {
+			public void onClick(View arg0) {
+				Intent intent = new Intent(TicketActivity.this, IndexActivity.class);
+				startActivity(intent);
+			}
+		});
 	}
 
 
