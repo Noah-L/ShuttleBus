@@ -71,6 +71,8 @@
     <ListView
         android:id="@+id/routeListView"
         android:layout_width="fill_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_gravity="center"
         android:layout_height="224dp" 
         android:gravity="center">

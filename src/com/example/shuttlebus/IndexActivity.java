@@ -56,6 +56,8 @@ public class IndexActivity extends Activity {
   
             public void onClick(View arg0) {  
             	Toast.makeText(getApplicationContext(), "shuttle bus的统计信息已经发到您的邮箱.", 2).show();
+            	Intent intent=new Intent(IndexActivity.this,SummaryActivity.class);  
+                startActivity(intent);
             }  
               
         }); 
