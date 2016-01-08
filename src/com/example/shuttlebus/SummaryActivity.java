@@ -1,6 +1,8 @@
 package com.example.shuttlebus;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -33,8 +35,14 @@ public class SummaryActivity extends Activity {
 		initButtonEvent();
 	}
 	
+	
 	private void initButtonEvent(){
 		Button returnButton = (Button)findViewById(R.id.summary_ReturnButton);
+		TextView textView = (TextView)findViewById(R.id.sysTime);
+		SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd"); 
+		Date date = new Date();
+		String dateStr = format.format(date);
+		textView.setText(dateStr);
 		returnButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View arg0) {
